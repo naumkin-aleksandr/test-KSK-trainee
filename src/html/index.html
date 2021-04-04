@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="shortcut icon"
+            href="/assets/favicon.ico"
+            type="image/x-icon"
+        />
+        <title>Test</title>
+    </head>
+    <body>
+        <div class="page">
+            <h1 class="title">Тестовое задание</h1>
+
+            <div class="wrap">
+                <button class="btn">
+                    <span class="btn__bg-icon"> Добавить</span>
+                </button>
+                <div class="sorting">
+                    <button
+                        class="sorting__btn-open-list sorting__btn-open-list_active"
+                    >
+                        Sorting
+                    </button>
+
+                    <ul class="sorting__list visuallyhidden">
+                        <li class="sorting__item">
+                            <button class="sorting__btn">
+                                ID - по возрастанию
+                            </button>
+                        </li>
+
+                        <li class="sorting__item">
+                            <button class="sorting__btn">
+                                ID - по убыванию
+                            </button>
+                        </li>
+
+                        <li class="sorting__item">
+                            <button class="sorting__btn">
+                                Дата создания - по возрастанию
+                            </button>
+                        </li>
+
+                        <li class="sorting__item">
+                            <button class="sorting__btn">
+                                Дата создания - по убыванию
+                            </button>
+                        </li>
+
+                        <li class="sorting__item">
+                            <button class="sorting__btn">
+                                Тип заказа RUED
+                            </button>
+                        </li>
+
+                        <li class="sorting__item">
+                            <button class="sorting__btn">
+                                Тип заказа RUEX
+                            </button>
+                        </li>
+
+                        <li class="sorting__item">
+                            <button class="sorting__btn">
+                                Тип заказа RUSG
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sorting -->
+
+                <div class="filters">
+                    <h3 class="filters__title">Filters</h3>
+
+                    <form class="filters__form" action="#">
+                        <label class="filters__label" for="">
+                            ID накладной
+                        </label>
+                        <input
+                            class="filters__input"
+                            type="text"
+                            placeholder="Введите значение"
+                        />
+
+                        <label class="filters__label" for="">
+                            Номер накладной
+                        </label>
+                        <input
+                            class="filters__input"
+                            type="text"
+                            placeholder="Введите значение"
+                        />
+
+                        <label class="filters__label" for="">
+                            Время прибытия
+                        </label>
+                        <input
+                            class="filters__input"
+                            type="text"
+                            placeholder="Введите значение"
+                        />
+
+                        <label class="filters__label" for="">Тип заказа</label>
+                        <input
+                            class="filters__input"
+                            type="text"
+                            placeholder="Введите значение"
+                        />
+                    </form>
+                </div>
+                <!-- /.filters -->
+
+                <div class="card">
+                    <div class="card__item">
+                        <h4 class="card__subtitle">Card 1</h4>
+                        <div class="card__wrap-btn-open">
+                            <button class="card__btn-open"></button>
+                            <div class="card__box-tools visuallyhidden">
+                                <button
+                                    class="card__btn-tools card__btn-tools_icon-edit"
+                                >
+                                    редактировать
+                                </button>
+                                <button
+                                    class="card__btn-tools card__btn-tools_icon-delete"
+                                >
+                                    удалить
+                                </button>
+                            </div>
+                        </div>
+                        <ul class="card__list-data">
+                            <li class="card__elem-data">
+                                ID: <span>#sdjfsdjfj</span>
+                            </li>
+                            <li class="card__elem-data">Дата создания:</li>
+                            <li class="card__elem-data">Номер накладной:</li>
+                            <li class="card__elem-data">Время прибытия:</li>
+                            <li class="card__elem-data">Тип заказа:</li>
+                        </ul>
+                    </div>
+                    <!-- /.card__item-->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.wrap-->
+
+            <div class="addition">
+                <h3 class="addition__title">Добавление</h3>
+                <form class="addition__form" action="#">
+                    <label class="addition__label" for="">
+                        Номер накладной
+                    </label>
+                    <input class="addition__input" type="text" />
+
+                    <label class="addition__label" for="">Время прибытия</label>
+                    <input class="addition__input" type="text" />
+
+                    <label class="addition__label" for="">Тип заказа</label>
+                    <input class="addition__input" type="text" />
+
+                    <button class="addition__btn">Сохранить</button>
+                </form>
+            </div>
+            <!-- /.addition -->
+        </div>
+        <!--/.page-->
+
+        <div class="blackout"></div>
+    </body>
+</html>

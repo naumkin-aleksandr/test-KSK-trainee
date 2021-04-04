@@ -1,0 +1,398 @@
+// путь до импортируемых файлов, прописывается относительно файла style.scss
+
+@import "./utilities/reset.scss";
+@import "./utilities/fonts.scss";
+@import "./utilities/vars.scss";
+@import "./utilities/mixins.scss";
+
+body {
+    font-family: $main-font;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: $text-color;
+}
+
+.visuallyhidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+// .blackout {
+//     width: 100%;
+//     height: 100%;
+//     background: rgba(43, 40, 57, 0.2);
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     z-index: 2;
+// }
+
+.page {
+    width: 1440px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.title {
+    padding: 106px 110px 0;
+    min-height: 261px;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 42px;
+    color: #fff;
+    text-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    vertical-align: middle;
+    background: linear-gradient(
+        267.21deg,
+        rgba(134, 4, 137, 0.785707) 0%,
+        rgba(159, 12, 162, 0.762269) 43.22%,
+        rgba(5, 1, 190, 0.734375) 98.12%,
+        rgba(0, 28, 126, 0.619792) 100%
+    );
+}
+
+.wrap {
+    padding: 30px 110px 30px 120px;
+    min-height: 809px;
+    background: $default-color;
+    display: grid;
+    grid: 70px auto / 280px 1fr;
+    grid-gap: 20px;
+}
+
+.btn {
+    width: 280px;
+    height: 70px;
+    font-family: $main-font;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #4943cd;
+    box-shadow: 0px 4px 4px #ebebeb;
+    border-radius: 2px;
+    cursor: pointer;
+
+    &__bg-icon {
+        padding-left: 32px;
+        position: relative;
+
+        &::before {
+            content: "";
+            width: 18px;
+            height: 16px;
+            background-image: url(../img/sprite.png);
+            background-repeat: no-repeat;
+            background-position: -20px 0px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+.sorting {
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 4px 12px #e7e7e7;
+    position: relative;
+
+    &__btn-open-list {
+        width: 250px;
+        height: 30px;
+        padding-left: 10px;
+        font-family: $main-font;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        text-align-last: left;
+        background: #fff;
+        border: 1px solid #e0e5e6;
+        position: absolute;
+        cursor: pointer;
+
+        &::before {
+            content: "";
+            width: 10px;
+            height: 6px;
+            background-image: url(../img/sprite.png);
+            background-repeat: no-repeat;
+            background-position: -24px -18px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+        }
+
+        &_active {
+            &::before {
+                transform: translateY(-50%) rotate(-90deg);
+            }
+        }
+    }
+
+    &__list {
+        border: 1px solid #e0e5e6;
+        position: absolute;
+        top: 50px;
+        left: 20px;
+    }
+
+    &__item {
+        border-bottom: 1px solid #e0e5e6;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__btn {
+        width: 248px;
+        height: 29px;
+        padding-left: 10px;
+        font-family: $main-font;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 24px;
+        text-align-last: left;
+        background: #fff;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover {
+            box-shadow: inset 0 0 0 2px #4943cd;
+        }
+    }
+}
+
+.filters {
+    margin-bottom: auto;
+    background: #fff;
+    box-shadow: 0px 4px 12px #e7e7e7;
+
+    &__title {
+        padding: 15px 35px 5px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        border: 1px solid #f8f8f8;
+    }
+
+    &__form {
+        padding: 15px 30px 0;
+        display: flex;
+        flex-flow: column;
+    }
+
+    &__label {
+        margin-bottom: 10px;
+        font-weight: 500;
+        line-height: 16px;
+    }
+
+    &__input {
+        margin-bottom: 20px;
+        padding-left: 10px;
+        font-family: $main-font;
+        font-weight: 400;
+        font-size: 14px;
+        height: 30px;
+        background: #ffffff;
+        border: 1px solid #d9d9d9;
+        border-radius: 2px;
+    }
+}
+
+.card {
+    margin-bottom: auto;
+    display: flex;
+    flex-flow: wrap;
+
+    &__item {
+        margin: 0 20px 20px 0;
+        width: 290px;
+        background: #f6fafb;
+        box-shadow: 0px 4px 12px #ebebeb;
+        border-radius: 0 0 3px 3px;
+        position: relative;
+
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+    }
+
+    &__subtitle {
+        padding: 13px 20px 7px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 20px;
+        background: #f1f1f8;
+    }
+
+    &__wrap-btn-open {
+        position: absolute;
+        top: 5px;
+        right: 8px;
+    }
+
+    &__btn-open {
+        width: 30px;
+        height: 30px;
+        position: relative;
+        cursor: pointer;
+
+        &::before {
+            content: "";
+            width: 4.3px;
+            height: 4.3px;
+            background: #000;
+            border-radius: 50%;
+            box-shadow: 0 5.88px 0 0 #000, 0 11.74px 0 0 #000;
+            position: absolute;
+            top: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: 0.2s;
+        }
+
+        &:hover::before {
+            width: 5px;
+            height: 5px;
+            box-shadow: 0 7.5px 0 0 #000, 0 15px 0 0 #000;
+            top: 5px;
+        }
+    }
+
+    &__box-tools {
+        width: 150px;
+        padding: 5px 0;
+        background: #fff;
+        position: absolute;
+        top: 30px;
+        right: 28px;
+        // display: flex;
+        // flex-flow: column;
+        // justify-content: start;
+    }
+
+    &__btn-tools {
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+        padding-left: 30px;
+        font-family: $main-font;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        background: none;
+        cursor: pointer;
+        text-align: left;
+        position: relative;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &_icon-edit {
+            &::before {
+                content: "";
+                width: 14px;
+                height: 14px;
+                background-image: url(../img/sprite.png);
+                background-repeat: no-repeat;
+                background-position: 0px -18px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 10px;
+            }
+        }
+
+        &_icon-delete {
+            &::before {
+                content: "";
+                width: 10px;
+                height: 10px;
+                background-image: url(../img/sprite.png);
+                background-repeat: no-repeat;
+                background-position: -14px -18px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 12px;
+            }
+        }
+    }
+
+    &__list-data {
+        padding: 4px 20px 20px;
+    }
+
+    &__elem-data {
+        height: 30px;
+        border-bottom: 1px solid #f2f2f2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.addition {
+    width: 400px;
+    padding: 25px 20px 0;
+    background: #fff;
+    color: #000;
+    position: absolute;
+    top: 415px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &__title {
+        margin-bottom: 25px;
+        font-size: 16px;
+        line-height: 20px;
+        text-align: center;
+    }
+
+    &__form {
+        padding-bottom: 20px;
+        display: flex;
+        flex-flow: column;
+    }
+
+    &__label {
+        margin-bottom: 15px;
+        line-height: 20px;
+    }
+
+    &__input {
+        margin-bottom: 20px;
+        height: 30px;
+        padding: 0 15px;
+        border: 1px solid #d9d9d9;
+        border-radius: 2px;
+    }
+
+    &__btn {
+        height: 30px;
+        font-family: $main-font;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #fff;
+        background: #4943cd;
+        border-radius: 2px;
+        cursor: pointer;
+    }
+}
