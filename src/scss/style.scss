@@ -24,17 +24,27 @@ body {
     clip-path: inset(100%);
     clip: rect(0 0 0 0);
     overflow: hidden;
+    z-index: -100;
 }
 
-// .blackout {
-//     width: 100%;
-//     height: 100%;
-//     background: rgba(43, 40, 57, 0.2);
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     z-index: 2;
-// }
+.shield_blackout {
+    width: 100%;
+    height: 100%;
+    background: rgba(43, 40, 57, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.shield_transparent {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
 
 .page {
     width: 1440px;
@@ -43,7 +53,7 @@ body {
 }
 
 .title {
-    padding: 106px 110px 0;
+    padding: 106px 110px 50px;
     min-height: 261px;
     font-weight: 700;
     font-size: 36px;
@@ -146,6 +156,7 @@ body {
         position: absolute;
         top: 50px;
         left: 20px;
+        z-index: 4;
     }
 
     &__item {
@@ -255,9 +266,7 @@ body {
             content: "";
             width: 4.3px;
             height: 4.3px;
-            background: #000;
             border-radius: 50%;
-            box-shadow: 0 5.88px 0 0 #000, 0 11.74px 0 0 #000;
             position: absolute;
             top: 7px;
             left: 50%;
@@ -265,11 +274,32 @@ body {
             transition: 0.2s;
         }
 
-        &:hover::before {
-            width: 5px;
-            height: 5px;
-            box-shadow: 0 7.5px 0 0 #000, 0 15px 0 0 #000;
-            top: 5px;
+        &_black {
+            &::before {
+                background: #000;
+                box-shadow: 0 5.88px 0 0 #000, 0 11.74px 0 0 #000;
+            }
+
+            &:hover::before {
+                width: 5px;
+                height: 5px;
+                top: 5px;
+                box-shadow: 0 7.5px 0 0 #000, 0 15px 0 0 #000;
+            }
+        }
+
+        &_red {
+            &::before {
+                background: #f700ff;
+                box-shadow: 0 5.88px 0 0 #f700ff, 0 11.74px 0 0 #f700ff;
+            }
+
+            &:hover::before {
+                width: 5px;
+                height: 5px;
+                top: 5px;
+                box-shadow: 0 7.5px 0 0 #f700ff, 0 15px 0 0 #f700ff;
+            }
         }
     }
 
@@ -280,9 +310,6 @@ body {
         position: absolute;
         top: 30px;
         right: 28px;
-        // display: flex;
-        // flex-flow: column;
-        // justify-content: start;
     }
 
     &__btn-tools {
@@ -299,9 +326,14 @@ body {
         cursor: pointer;
         text-align: left;
         position: relative;
+        transition: 0.2s;
 
         &:last-child {
             margin-bottom: 0;
+        }
+
+        &:hover {
+            box-shadow: 0 0 0 2px #4943cd;
         }
 
         &_icon-edit {
@@ -357,6 +389,7 @@ body {
     top: 415px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 3;
 
     &__title {
         margin-bottom: 25px;
@@ -382,17 +415,92 @@ body {
         padding: 0 15px;
         border: 1px solid #d9d9d9;
         border-radius: 2px;
+
+        &_error {
+            border: 2px solid #a039a3;
+        }
+    }
+
+    &__select {
+        margin-bottom: 20px;
+        padding-left: 15px;
+        height: 30px;
+        font-family: $main-font;
+        font-weight: 400;
+        font-size: 16px;
+        color: $text-color;
+        border: 1px solid #d9d9d9;
+        border-radius: 2px;
+    }
+
+    &__option {
+        color: $text-color;
+    }
+
+    &__box-btn {
+        display: flex;
+        justify-content: space-between;
     }
 
     &__btn {
-        height: 30px;
+        width: 30%;
+        height: 40px;
         font-family: $main-font;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         color: #fff;
-        background: #4943cd;
-        border-radius: 2px;
+        border-radius: 3px;
         cursor: pointer;
+        transition: 0.3s;
+
+        &_purple {
+            background: #a039a3;
+
+            &:hover {
+                background: none;
+                color: #a039a3;
+                box-shadow: inset 0 0 0 5px #a039a3;
+            }
+        }
+
+        &_blue {
+            background: #4943cd;
+
+            &:hover {
+                background: none;
+                color: #4943cd;
+                box-shadow: inset 0 0 0 5px #4943cd;
+            }
+        }
+    }
+}
+
+.not-found {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(43, 40, 57, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+
+    &__text {
+        width: 400px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 42px;
+        text-transform: uppercase;
+        text-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        color: #fff;
+        background: #a039a3;
+        border-radius: 10px;
     }
 }

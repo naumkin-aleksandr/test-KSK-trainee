@@ -16,55 +16,62 @@
             <h1 class="title">Тестовое задание</h1>
 
             <div class="wrap">
-                <button class="btn">
+                <button class="btn" id="btn-create-card">
                     <span class="btn__bg-icon"> Добавить</span>
                 </button>
                 <div class="sorting">
                     <button
-                        class="sorting__btn-open-list sorting__btn-open-list_active"
+                        class="sorting__btn-open-list"
+                        id="btn-sorting-open-list"
                     >
                         Sorting
                     </button>
 
-                    <ul class="sorting__list visuallyhidden">
+                    <ul class="sorting__list visuallyhidden" id="sorting-list">
                         <li class="sorting__item">
-                            <button class="sorting__btn">
+                            <button class="sorting__btn" id="ID-ascending">
                                 ID - по возрастанию
                             </button>
                         </li>
 
                         <li class="sorting__item">
-                            <button class="sorting__btn">
+                            <button class="sorting__btn" id="ID-descending">
                                 ID - по убыванию
                             </button>
                         </li>
 
                         <li class="sorting__item">
-                            <button class="sorting__btn">
+                            <button
+                                class="sorting__btn"
+                                id="date-creation-ascending"
+                            >
                                 Дата создания - по возрастанию
                             </button>
                         </li>
 
                         <li class="sorting__item">
-                            <button class="sorting__btn">
+                            <button
+                                class="sorting__btn"
+                                id="date-creation-descending"
+                            >
                                 Дата создания - по убыванию
                             </button>
                         </li>
 
                         <li class="sorting__item">
-                            <button class="sorting__btn">
+                            <button class="sorting__btn" id="type-order-RUED">
                                 Тип заказа RUED
                             </button>
                         </li>
 
                         <li class="sorting__item">
-                            <button class="sorting__btn">
+                            <button class="sorting__btn" id="type-order-RUEX">
                                 Тип заказа RUEX
                             </button>
                         </li>
 
                         <li class="sorting__item">
-                            <button class="sorting__btn">
+                            <button class="sorting__btn" id="type-order-RUSG">
                                 Тип заказа RUSG
                             </button>
                         </li>
@@ -76,98 +83,124 @@
                     <h3 class="filters__title">Filters</h3>
 
                     <form class="filters__form" action="#">
-                        <label class="filters__label" for="">
+                        <label class="filters__label" for="filter-ID-invoice">
                             ID накладной
                         </label>
                         <input
                             class="filters__input"
                             type="text"
                             placeholder="Введите значение"
+                            id="filter-ID-invoice"
                         />
 
-                        <label class="filters__label" for="">
+                        <label
+                            class="filters__label"
+                            for="filter-number-Account"
+                        >
                             Номер накладной
                         </label>
                         <input
                             class="filters__input"
                             type="text"
                             placeholder="Введите значение"
+                            id="filter-number-Account"
                         />
 
-                        <label class="filters__label" for="">
+                        <label class="filters__label" for="filter-time-Arrival">
                             Время прибытия
                         </label>
                         <input
                             class="filters__input"
                             type="text"
                             placeholder="Введите значение"
+                            id="filter-time-Arrival"
                         />
 
-                        <label class="filters__label" for="">Тип заказа</label>
+                        <label class="filters__label" for="filter-type-Order"
+                            >Тип заказа</label
+                        >
                         <input
                             class="filters__input"
                             type="text"
                             placeholder="Введите значение"
+                            id="filter-type-Order"
                         />
                     </form>
                 </div>
                 <!-- /.filters -->
 
-                <div class="card">
-                    <div class="card__item">
-                        <h4 class="card__subtitle">Card 1</h4>
-                        <div class="card__wrap-btn-open">
-                            <button class="card__btn-open"></button>
-                            <div class="card__box-tools visuallyhidden">
-                                <button
-                                    class="card__btn-tools card__btn-tools_icon-edit"
-                                >
-                                    редактировать
-                                </button>
-                                <button
-                                    class="card__btn-tools card__btn-tools_icon-delete"
-                                >
-                                    удалить
-                                </button>
-                            </div>
-                        </div>
-                        <ul class="card__list-data">
-                            <li class="card__elem-data">
-                                ID: <span>#sdjfsdjfj</span>
-                            </li>
-                            <li class="card__elem-data">Дата создания:</li>
-                            <li class="card__elem-data">Номер накладной:</li>
-                            <li class="card__elem-data">Время прибытия:</li>
-                            <li class="card__elem-data">Тип заказа:</li>
-                        </ul>
-                    </div>
-                    <!-- /.card__item-->
-                </div>
+                <div class="card" id="card"></div>
                 <!-- /.card -->
             </div>
             <!--/.wrap-->
 
-            <div class="addition">
+            <div class="addition visuallyhidden" id="addition-box">
                 <h3 class="addition__title">Добавление</h3>
                 <form class="addition__form" action="#">
-                    <label class="addition__label" for="">
+                    <label
+                        class="addition__label"
+                        for="addition-invoice-number"
+                    >
                         Номер накладной
                     </label>
-                    <input class="addition__input" type="text" />
+                    <input
+                        class="addition__input"
+                        id="addition-invoice-number"
+                        type="text"
+                        placeholder="Введите значение"
+                    />
 
-                    <label class="addition__label" for="">Время прибытия</label>
-                    <input class="addition__input" type="text" />
+                    <label class="addition__label" for="addition-arrival-time">
+                        Время прибытия
+                    </label>
+                    <input
+                        class="addition__input"
+                        id="addition-arrival-time"
+                        type="text"
+                        placeholder="Введите значение"
+                    />
 
                     <label class="addition__label" for="">Тип заказа</label>
-                    <input class="addition__input" type="text" />
+                    <select
+                        class="addition__select"
+                        id="addition-type-order"
+                        name=""
+                    >
+                        <option class="addition__option" value="RUED" selected>
+                            RUED
+                        </option>
+                        <option class="addition__option" value="RUEX">
+                            RUEX
+                        </option>
+                        <option class="addition__option" value="RUSG">
+                            RUSG
+                        </option>
+                    </select>
 
-                    <button class="addition__btn">Сохранить</button>
+                    <div class="addition__box-btn">
+                        <button
+                            class="addition__btn addition__btn_blue"
+                            id="btn-save-card"
+                        >
+                            Сохранить
+                        </button>
+                        <button
+                            class="addition__btn addition__btn_purple"
+                            id="btn-cler-addition"
+                        >
+                            Очистить
+                        </button>
+                    </div>
                 </form>
             </div>
             <!-- /.addition -->
         </div>
         <!--/.page-->
 
-        <div class="blackout"></div>
+        <div id="shield-blackout"></div>
+        <div id="shield-transparent"></div>
+        <div class="not-found visuallyhidden" id="not-found">
+            <p class="not-found__text">не найдено</p>
+        </div>
     </body>
 </html>
