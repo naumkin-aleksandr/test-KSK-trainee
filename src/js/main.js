@@ -1,63 +1,56 @@
-// "use strict";
+"use strict";
 
-let arrayCards = [];
+let arrayCards = JSON.parse(localStorage.getItem("data"));
 
-const data = JSON.parse(localStorage.getItem("arrayCards"));
-
-console.log(data);
-if (data) {
-    arrayCards = data;
-} else {
+if (!arrayCards) {
     arrayCards = [
         {
-            id: 1,
-            timeCreation: 200,
-            numberAccount: 145454,
-            timeArrival: 4555,
+            id: "202021411459999",
+            timeCreation: "2020/02/14 11:45",
+            numberAccount: "10",
+            timeArrival: "10",
             typeOrder: "RUEX",
         },
         {
-            id: 300,
-            timeCreation: 1000,
-            numberAccount: 244,
-            timeArrival: 4555,
+            id: "202021510307777",
+            timeCreation: "2020/02/15 10:30",
+            numberAccount: "11",
+            timeArrival: "12",
             typeOrder: "RUED",
         },
         {
-            id: 200,
-            timeCreation: 500,
-            numberAccount: 666,
-            timeArrival: 888,
+            id: "20203213106666",
+            timeCreation: "2020/03/02 13:10",
+            numberAccount: "15",
+            timeArrival: "14",
             typeOrder: "RUSG",
         },
     ];
 }
 
-window.addEventListener("unload", () => {});
-
-const card = document.querySelector("#card"),
-    btnSaveCard = document.querySelector("#btn-save-card"),
-    btnCreateCard = document.querySelector("#btn-create-card"),
-    additionBox = document.querySelector("#addition-box"),
-    shieldBlackout = document.querySelector("#shield-blackout"),
-    elemNumberAccount = document.querySelector("#addition-invoice-number"),
-    elemTimeArrival = document.querySelector("#addition-arrival-time"),
-    elemTypeOrder = document.querySelector("#addition-type-order"),
-    btnClearAddition = document.querySelector("#btn-cler-addition"),
-    btnSortingOpenList = document.querySelector("#btn-sorting-open-list"),
-    sortingList = document.querySelector("#sorting-list"),
-    shieldTransparent = document.querySelector("#shield-transparent"),
-    inputFilter = document.querySelectorAll(".filters__input"),
-    notFoundBox = document.querySelector("#not-found"),
-    filterIDInvoice = document.querySelector("#filter-ID-invoice"),
-    filterNumberAccount = document.querySelector("#filter-number-Account"),
-    filterTimeArrival = document.querySelector("#filter-time-Arrival"),
-    filtertypeOrder = document.querySelector("#filter-type-Order");
+const card = document.querySelector("#card");
+const btnSaveCard = document.querySelector("#btn-save-card");
+const btnCreateCard = document.querySelector("#btn-create-card");
+const additionBox = document.querySelector("#addition-box");
+const shieldBlackout = document.querySelector("#shield-blackout");
+const elemNumberAccount = document.querySelector("#addition-invoice-number");
+const elemTimeArrival = document.querySelector("#addition-arrival-time");
+const elemTypeOrder = document.querySelector("#addition-type-order");
+const btnClearAddition = document.querySelector("#btn-cler-addition");
+const btnSortingOpenList = document.querySelector("#btn-sorting-open-list");
+const sortingList = document.querySelector("#sorting-list");
+const shieldTransparent = document.querySelector("#shield-transparent");
+const inputFilter = document.querySelectorAll(".filters__input");
+const notFoundBox = document.querySelector("#not-found");
+const filterIDInvoice = document.querySelector("#filter-ID-invoice");
+const filterNumberAccount = document.querySelector("#filter-number-Account");
+const filterTimeArrival = document.querySelector("#filter-time-Arrival");
+const filtertypeOrder = document.querySelector("#filter-type-Order");
 
 filterIDInvoice.addEventListener("keydown", (event) => {
     const value = event.target.value;
     if (event.code === "Enter") {
-        const filterdArray = arrayCards.filter((el) => el.id === value);
+        const filterdArray = arrayCards.filter(({ id }) => id === value);
         findCard(filterdArray);
     }
 });
@@ -66,7 +59,7 @@ filterNumberAccount.addEventListener("keydown", (event) => {
     const value = event.target.value;
     if (event.code === "Enter") {
         const filterdArray = arrayCards.filter(
-            (el) => el.numberAccount === value
+            ({ numberAccount }) => numberAccount === value
         );
         findCard(filterdArray);
     }
@@ -76,7 +69,7 @@ filterTimeArrival.addEventListener("keydown", (event) => {
     const value = event.target.value;
     if (event.code === "Enter") {
         const filterdArray = arrayCards.filter(
-            (el) => el.timeArrival === value
+            ({ timeArrival }) => timeArrival === value
         );
         findCard(filterdArray);
     }
@@ -85,7 +78,9 @@ filterTimeArrival.addEventListener("keydown", (event) => {
 filtertypeOrder.addEventListener("keydown", (event) => {
     const value = event.target.value;
     if (event.code === "Enter") {
-        const filterdArray = arrayCards.filter((el) => el.typeOrder === value);
+        const filterdArray = arrayCards.filter(
+            ({ typeOrder }) => typeOrder === value
+        );
         findCard(filterdArray);
     }
 });
@@ -128,6 +123,10 @@ function resetValueInputFilter(element) {
     element.addEventListener("blur", () => {
         element.value = "";
     });
+}
+
+function saveStorage() {
+    localStorage.setItem("data", JSON.stringify(arrayCards));
 }
 
 function findCard(arr) {
@@ -182,7 +181,7 @@ function createCard(dataCard, index) {
     } = dataCard;
 
     const elem = `
-        <div class="card__item">
+        <div class="card__item" draggable="true">
             <h4 class="card__subtitle">Card ${index}</h4>
             <div class="card__wrap-btn-open">
                 <button class="card__btn-open card__btn-open_black"></button>
@@ -217,19 +216,22 @@ function displayListCard(arr) {
     arr.map((item, index) => createCard(item, index + 1));
 }
 
+function getDateValue(value) {
+    return String(value).length === 1 ? 0 + value : value;
+}
+
 function addCard() {
     const numberAccount = elemNumberAccount.value,
         timeArrival = elemTimeArrival.value;
 
     if (numberAccount && timeArrival) {
         const date = new Date();
-        const hours = String(date.getHours());
-        const minutes = String(date.getMinutes());
-        const timeCreation = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()} ${
-            hours.length === 1 ? 0 + hours : hours
-        }:${minutes.length === 1 ? 0 + minutes : minutes}
-        `;
-        const id = `${timeCreation.replace(/[^\d]/g, "")}${Math.floor(
+        const month = getDateValue(String(date.getMonth() + 1));
+        const day = getDateValue(String(date.getDate()));
+        const hours = getDateValue(String(date.getHours()));
+        const minutes = getDateValue(String(date.getMinutes()));
+        const timeCreation = `${date.getFullYear()}/${month}/${day} ${hours}:${minutes}`;
+        const id = `${clearTimeCreation(timeCreation)}${Math.floor(
             Math.random() * 10000
         )}`;
 
@@ -246,7 +248,7 @@ function addCard() {
         arrayCards.push(newCard);
         displayListCard(arrayCards);
 
-        localStorage.setItem("arrayData", JSON.stringify(arrayCards));
+        saveStorage();
 
         console.log(arrayCards);
         clearAdditionInput();
@@ -288,17 +290,18 @@ function clearTimeCreation(num) {
 }
 
 function sortArrayCard(event) {
-    const target = event.target.id;
-    switch (target) {
+    switch (event.target.id) {
         case "ID-ascending":
             arrayCards.sort((a, b) => b.id - a.id);
             displayListCard(arrayCards);
+            saveStorage();
             hideSortingList();
             break;
 
         case "ID-descending":
             arrayCards.sort((a, b) => a.id - b.id);
             displayListCard(arrayCards);
+            saveStorage();
             hideSortingList();
             break;
 
@@ -309,6 +312,7 @@ function sortArrayCard(event) {
                     +clearTimeCreation(a.timeCreation)
             );
             displayListCard(arrayCards);
+            saveStorage();
             hideSortingList();
             break;
 
@@ -319,34 +323,66 @@ function sortArrayCard(event) {
                     +clearTimeCreation(b.timeCreation)
             );
             displayListCard(arrayCards);
+            saveStorage();
             hideSortingList();
             break;
 
         case "type-order-RUED":
             arrayCards = [
-                ...arrayCards.filter((el) => el.typeOrder === "RUED"),
-                ...arrayCards.filter((el) => el.typeOrder !== "RUED"),
+                ...arrayCards.filter(({ typeOrder }) => typeOrder === "RUED"),
+                ...arrayCards.filter(({ typeOrder }) => typeOrder !== "RUED"),
             ];
             displayListCard(arrayCards);
+            saveStorage();
             hideSortingList();
             break;
 
         case "type-order-RUEX":
             arrayCards = [
-                ...arrayCards.filter((el) => el.typeOrder === "RUEX"),
-                ...arrayCards.filter((el) => el.typeOrder !== "RUEX"),
+                ...arrayCards.filter(({ typeOrder }) => typeOrder === "RUEX"),
+                ...arrayCards.filter(({ typeOrder }) => typeOrder !== "RUEX"),
             ];
             displayListCard(arrayCards);
+            saveStorage();
             hideSortingList();
             break;
 
         case "type-order-RUSG":
             arrayCards = [
-                ...arrayCards.filter((el) => el.typeOrder === "RUEX"),
-                ...arrayCards.filter((el) => el.typeOrder !== "RUSG"),
+                ...arrayCards.filter(({ typeOrder }) => typeOrder === "RUSG"),
+                ...arrayCards.filter(({ typeOrder }) => typeOrder !== "RUSG"),
             ];
             displayListCard(arrayCards);
+            saveStorage();
             hideSortingList();
             break;
     }
 }
+
+card.addEventListener("dragstart", (event) => {
+    event.target.classList.add("card__item_selected");
+});
+
+card.addEventListener("dragend", (event) => {
+    event.target.classList.remove("card__item_selected");
+});
+
+card.addEventListener("dragover", (event) => {
+    event.preventDefault();
+
+    const activeElement = card.querySelector(".card__item_selected");
+    const currentElement = event.target.closest(".card__item");
+
+    const isMoveable = activeElement !== currentElement && currentElement;
+
+    if (!isMoveable) {
+        return;
+    }
+
+    const nextElement =
+        currentElement === activeElement.nextElementSibling
+            ? currentElement.nextElementSibling
+            : currentElement;
+
+    card.insertBefore(activeElement, nextElement);
+});

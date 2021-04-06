@@ -236,9 +236,15 @@ body {
         box-shadow: 0px 4px 12px #ebebeb;
         border-radius: 0 0 3px 3px;
         position: relative;
+        cursor: move;
 
         &:nth-child(3n) {
             margin-right: 0;
+        }
+
+        &_selected {
+            box-shadow: 0 0 0 4px 12px #4943cd;
+            border-radius: 3px;
         }
     }
 
